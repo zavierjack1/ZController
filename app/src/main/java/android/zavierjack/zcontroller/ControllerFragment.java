@@ -71,8 +71,8 @@ public class ControllerFragment extends Fragment {
                 Log.d(Util.LOG_TAG, "RedButtonContentType: "+mControllerConfig.getRedButtonContentType());
                 Log.d(Util.LOG_TAG, "RedButtonMethod: "+mControllerConfig.getRedButtonMethod());
 
-                Log.d(Util.LOG_TAG, "Log for gitlab");
-
+                Log.d(Util.LOG_TAG, "Log for gitlab2"); 
+ 
 
                 final String requestBody = mControllerConfig.getRedButtonPostParams();
                 Log.d(Util.LOG_TAG, requestBody);
