@@ -106,16 +106,16 @@
                 android:hint="" />
 
             <TextView
-                android:id="@+id/controller_config_red_button_post_params_label"
+                android:id="@+id/controller_config_red_button_request_body_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Red Button Post Params" />
+                android:text="Red Button Request Body" />
 
             <EditText
-                android:id="@+id/controller_config_red_button_post_params"
+                android:id="@+id/controller_config_red_button_request_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

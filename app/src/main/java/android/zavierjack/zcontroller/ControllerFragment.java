@@ -41,7 +41,7 @@ public class ControllerFragment extends Fragment {
                 JSONObject myParams = new JSONObject();
                 if (mButton.equals(v.findViewById(R.id.red_button))){
                     final String url = mControllerConfig.getRedButtonUrl();
-                    final String postParams = mControllerConfig.getRedButtonPostParams();
+                    final String requestBody = mControllerConfig.getRedButtonRequestBody();
                     final String contentType = mControllerConfig.getRedButtonContentType();
                     final String method = mControllerConfig.getRedButtonMethod();
                     int methodCD =0;
@@ -54,8 +54,6 @@ public class ControllerFragment extends Fragment {
                     }
 
                     final int methodCd_final = methodCD;
-
-                    final String requestBody = postParams;
                     Log.d(Util.LOG_TAG, requestBody);
 
                     //Request a string response from the provided URL.
@@ -102,7 +100,7 @@ public class ControllerFragment extends Fragment {
                     queue.add(stringRequest);
                 }
                 Log.d(Util.LOG_TAG, "RedButtonURL: "+mControllerConfig.getRedButtonUrl());
-                Log.d(Util.LOG_TAG, "RedButtonPostParams: "+mControllerConfig.getRedButtonPostParams());
+                Log.d(Util.LOG_TAG, "RedButtonRequestBody: "+mControllerConfig.getRedButtonRequestBody());
                 Log.d(Util.LOG_TAG, "RedButtonContentType: "+mControllerConfig.getRedButtonContentType());
                 Log.d(Util.LOG_TAG, "RedButtonMethod: "+mControllerConfig.getRedButtonMethod());
 

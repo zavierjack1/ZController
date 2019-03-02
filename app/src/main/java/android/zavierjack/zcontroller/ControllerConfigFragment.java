@@ -19,7 +19,7 @@ public class ControllerConfigFragment extends Fragment {
     private Button mBackgroundColorButton;
     private EditText mRedButtonURLField;
     private EditText mRedButtonMethodField;
-    private EditText mRedButtonPostParamsField;
+    private EditText mRedButtonRequestBodyField;
     private EditText mRedButtonContentTypeField;
 
     private Button mSaveButton;
@@ -59,7 +59,7 @@ public class ControllerConfigFragment extends Fragment {
         mBackgroundColorButton = v.findViewById(R.id.controller_config_background_color);
         mRedButtonURLField = v.findViewById(R.id.controller_config_red_button_url);
         mRedButtonMethodField = v.findViewById(R.id.controller_config_red_button_method);
-        mRedButtonPostParamsField = v.findViewById(R.id.controller_config_red_button_post_params);
+        mRedButtonRequestBodyField = v.findViewById(R.id.controller_config_red_button_request_body);
         mRedButtonContentTypeField = v.findViewById(R.id.controller_config_red_button_content_type);
 
         mNameField.setText(mControllerConfig.getName());
@@ -67,7 +67,7 @@ public class ControllerConfigFragment extends Fragment {
         //mBackgroundColorButton.setText(mControllerConfig.getName());
         mRedButtonURLField.setText(mControllerConfig.getRedButtonUrl());
         mRedButtonMethodField.setText(mControllerConfig.getRedButtonMethod());
-        mRedButtonPostParamsField.setText(mControllerConfig.getRedButtonPostParams());
+        mRedButtonRequestBodyField.setText(mControllerConfig.getRedButtonRequestBody());
         mRedButtonContentTypeField.setText(mControllerConfig.getRedButtonContentType());
 
         mSaveButton = v.findViewById(R.id.controller_config_save);
@@ -80,7 +80,7 @@ public class ControllerConfigFragment extends Fragment {
                 //backgroundcolor
                 mControllerConfig.setRedButtonUrl(mRedButtonURLField.getText().toString());
                 mControllerConfig.setRedButtonMethod(mRedButtonMethodField.getText().toString());
-                mControllerConfig.setRedButtonPostParams(mRedButtonPostParamsField.getText().toString());
+                mControllerConfig.setRedButtonRequestBody(mRedButtonRequestBodyField.getText().toString());
                 mControllerConfig.setRedButtonContentType(mRedButtonContentTypeField.getText().toString());
                 getActivity().finish();
             }

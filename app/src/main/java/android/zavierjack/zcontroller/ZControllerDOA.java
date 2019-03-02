@@ -105,22 +105,22 @@ public class ZControllerDOA {
 
         values.put(ControllerConfigTable.Cols.RED_BUTTON_URL, controllerConfig.getRedButtonUrl());
         values.put(ControllerConfigTable.Cols.RED_BUTTON_METHOD, controllerConfig.getRedButtonMethod());
-        values.put(ControllerConfigTable.Cols.RED_BUTTON_POST_PARAMS, controllerConfig.getRedButtonPostParams());
+        values.put(ControllerConfigTable.Cols.RED_BUTTON_POST_PARAMS, controllerConfig.getRedButtonRequestBody());
         values.put(ControllerConfigTable.Cols.RED_BUTTON_CONTENT_TYPE, controllerConfig.getRedButtonContentType());
 
         values.put(ControllerConfigTable.Cols.BLUE_BUTTON_URL, controllerConfig.getBlueButtonUrl());
         values.put(ControllerConfigTable.Cols.BLUE_BUTTON_METHOD, controllerConfig.getBlueButtonMethod());
-        values.put(ControllerConfigTable.Cols.BLUE_BUTTON_POST_PARAMS, controllerConfig.getBlueButtonPostParams());
+        values.put(ControllerConfigTable.Cols.BLUE_BUTTON_POST_PARAMS, controllerConfig.getBlueButtonRequestBody());
         values.put(ControllerConfigTable.Cols.BLUE_BUTTON_CONTENT_TYPE, controllerConfig.getBlueButtonContentType());
 
         values.put(ControllerConfigTable.Cols.GREEN_BUTTON_URL, controllerConfig.getGreenButtonUrl());
         values.put(ControllerConfigTable.Cols.GREEN_BUTTON_METHOD, controllerConfig.getGreenButtonMethod());
-        values.put(ControllerConfigTable.Cols.GREEN_BUTTON_POST_PARAMS, controllerConfig.getGreenButtonPostParams());
+        values.put(ControllerConfigTable.Cols.GREEN_BUTTON_POST_PARAMS, controllerConfig.getGreenButtonRequestBody());
         values.put(ControllerConfigTable.Cols.GREEN_BUTTON_CONTENT_TYPE, controllerConfig.getGreenButtonContentType());
 
         values.put(ControllerConfigTable.Cols.YELLOW_BUTTON_URL, controllerConfig.getYellowButtonUrl());
         values.put(ControllerConfigTable.Cols.YELLOW_BUTTON_METHOD, controllerConfig.getYellowButtonMethod());
-        values.put(ControllerConfigTable.Cols.YELLOW_BUTTON_POST_PARAMS, controllerConfig.getYellowButtonPostParams());
+        values.put(ControllerConfigTable.Cols.YELLOW_BUTTON_POST_PARAMS, controllerConfig.getYellowButtonRequestBody());
         values.put(ControllerConfigTable.Cols.YELLOW_BUTTON_CONTENT_TYPE, controllerConfig.getYellowButtonContentType());
 
         return values;

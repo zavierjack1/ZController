@@ -10,22 +10,22 @@ public class ControllerConfig {
 
     private String mRedButtonUrl;
     private String mRedButtonMethod;
-    private String mRedButtonPostParams;
+    private String mRedButtonRequestBody;
     private String mRedButtonContentType;
 
     private String mBlueButtonUrl;
     private String mBlueButtonMethod;
-    private String mBlueButtonPostParams;
+    private String mBlueButtonRequestBody;
     private String mBlueButtonContentType;
 
     private String mGreenButtonUrl;
     private String mGreenButtonMethod;
-    private String mGreenButtonPostParams;
+    private String mGreenButtonRequestBody;
     private String mGreenButtonContentType;
 
     private String mYellowButtonUrl;
     private String mYellowButtonMethod;
-    private String mYellowButtonPostParams;
+    private String mYellowButtonRequestBody;
     private String mYellowButtonContentType;
 
     public ControllerConfig(){
@@ -84,12 +84,12 @@ public class ControllerConfig {
         mRedButtonMethod = redButtonMethod;
     }
 
-    public String getRedButtonPostParams() {
-        return mRedButtonPostParams;
+    public String getRedButtonRequestBody() {
+        return mRedButtonRequestBody;
     }
 
-    public void setRedButtonPostParams(String redButtonPostParams) {
-        mRedButtonPostParams = redButtonPostParams;
+    public void setRedButtonRequestBody(String redButtonRequestBody) {
+        mRedButtonRequestBody = redButtonRequestBody;
     }
 
     public String getRedButtonContentType() {
@@ -116,12 +116,12 @@ public class ControllerConfig {
         mBlueButtonMethod = blueButtonMethod;
     }
 
-    public String getBlueButtonPostParams() {
-        return mBlueButtonPostParams;
+    public String getBlueButtonRequestBody() {
+        return mBlueButtonRequestBody;
     }
 
-    public void setBlueButtonPostParams(String blueButtonPostParams) {
-        mBlueButtonPostParams = blueButtonPostParams;
+    public void setBlueButtonRequestBody(String blueButtonRequestBody) {
+        mBlueButtonRequestBody = blueButtonRequestBody;
     }
 
     public String getBlueButtonContentType() {
@@ -148,12 +148,12 @@ public class ControllerConfig {
         mGreenButtonMethod = greenButtonMethod;
     }
 
-    public String getGreenButtonPostParams() {
-        return mGreenButtonPostParams;
+    public String getGreenButtonRequestBody() {
+        return mGreenButtonRequestBody;
     }
 
-    public void setGreenButtonPostParams(String greenButtonPostParams) {
-        mGreenButtonPostParams = greenButtonPostParams;
+    public void setGreenButtonRequestBody(String greenButtonRequestBody) {
+        mGreenButtonRequestBody = greenButtonRequestBody;
     }
 
     public String getGreenButtonContentType() {
@@ -180,12 +180,12 @@ public class ControllerConfig {
         mYellowButtonMethod = yellowButtonMethod;
     }
 
-    public String getYellowButtonPostParams() {
-        return mYellowButtonPostParams;
+    public String getYellowButtonRequestBody() {
+        return mYellowButtonRequestBody;
     }
 
-    public void setYellowButtonPostParams(String yellowButtonPostParams) {
-        mYellowButtonPostParams = yellowButtonPostParams;
+    public void setYellowButtonRequestBody(String yellowButtonRequestBody) {
+        mYellowButtonRequestBody = yellowButtonRequestBody;
     }
 
     public String getYellowButtonContentType() {
