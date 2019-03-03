@@ -25,6 +25,14 @@ public class ControllerConfigFragment extends Fragment {
     private EditText mButtonBMethodField;
     private EditText mButtonBRequestBodyField;
     private EditText mButtonBContentTypeField;
+    private EditText mButtonCURLField;
+    private EditText mButtonCMethodField;
+    private EditText mButtonCRequestBodyField;
+    private EditText mButtonCContentTypeField;
+    private EditText mButtonDURLField;
+    private EditText mButtonDMethodField;
+    private EditText mButtonDRequestBodyField;
+    private EditText mButtonDContentTypeField;
     private Button mSaveButton;
 
     @Override
@@ -70,6 +78,16 @@ public class ControllerConfigFragment extends Fragment {
         mButtonBMethodField = v.findViewById(R.id.controller_config_button_b_method);
         mButtonBRequestBodyField = v.findViewById(R.id.controller_config_button_b_request_body);
         mButtonBContentTypeField = v.findViewById(R.id.controller_config_button_b_content_type);
+
+        mButtonCURLField = v.findViewById(R.id.controller_config_button_c_url);
+        mButtonCMethodField = v.findViewById(R.id.controller_config_button_c_method);
+        mButtonCRequestBodyField = v.findViewById(R.id.controller_config_button_c_request_body);
+        mButtonCContentTypeField = v.findViewById(R.id.controller_config_button_c_content_type);
+
+        mButtonDURLField = v.findViewById(R.id.controller_config_button_d_url);
+        mButtonDMethodField = v.findViewById(R.id.controller_config_button_d_method);
+        mButtonDRequestBodyField = v.findViewById(R.id.controller_config_button_d_request_body);
+        mButtonDContentTypeField = v.findViewById(R.id.controller_config_button_d_content_type);
         
         mNameField.setText(mControllerConfig.getName());
         mDescriptionField.setText(mControllerConfig.getDescription());
@@ -84,6 +102,16 @@ public class ControllerConfigFragment extends Fragment {
         mButtonBMethodField.setText(mControllerConfig.getButtonB().getMethod());
         mButtonBRequestBodyField.setText(mControllerConfig.getButtonB().getRequestBody());
         mButtonBContentTypeField.setText(mControllerConfig.getButtonB().getContentType());
+
+        mButtonCURLField.setText(mControllerConfig.getButtonC().getUrl());
+        mButtonCMethodField.setText(mControllerConfig.getButtonC().getMethod());
+        mButtonCRequestBodyField.setText(mControllerConfig.getButtonC().getRequestBody());
+        mButtonCContentTypeField.setText(mControllerConfig.getButtonC().getContentType());
+
+        mButtonDURLField.setText(mControllerConfig.getButtonD().getUrl());
+        mButtonDMethodField.setText(mControllerConfig.getButtonD().getMethod());
+        mButtonDRequestBodyField.setText(mControllerConfig.getButtonD().getRequestBody());
+        mButtonDContentTypeField.setText(mControllerConfig.getButtonD().getContentType());
         
         mSaveButton = v.findViewById(R.id.controller_config_save);
 
@@ -101,6 +129,17 @@ public class ControllerConfigFragment extends Fragment {
                 mControllerConfig.getButtonB().setMethod(mButtonBMethodField.getText().toString());
                 mControllerConfig.getButtonB().setRequestBody(mButtonBRequestBodyField.getText().toString());
                 mControllerConfig.getButtonB().setContentType(mButtonBContentTypeField.getText().toString());
+
+                mControllerConfig.getButtonC().setUrl(mButtonCURLField.getText().toString());
+                mControllerConfig.getButtonC().setMethod(mButtonCMethodField.getText().toString());
+                mControllerConfig.getButtonC().setRequestBody(mButtonCRequestBodyField.getText().toString());
+                mControllerConfig.getButtonC().setContentType(mButtonCContentTypeField.getText().toString());
+
+                mControllerConfig.getButtonD().setUrl(mButtonDURLField.getText().toString());
+                mControllerConfig.getButtonD().setMethod(mButtonDMethodField.getText().toString());
+                mControllerConfig.getButtonD().setRequestBody(mButtonDRequestBodyField.getText().toString());
+                mControllerConfig.getButtonD().setContentType(mButtonDContentTypeField.getText().toString());
+                
                 getActivity().finish();
             }
         });

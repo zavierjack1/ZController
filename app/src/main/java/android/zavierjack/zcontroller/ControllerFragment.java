@@ -42,11 +42,17 @@ public class ControllerFragment extends Fragment {
 
         mFeedBackMonitor.setMovementMethod(new ScrollingMovementMethod());
 
-        final Button mButtonA = v.findViewById(R.id.button_a);
+        Button mButtonA = v.findViewById(R.id.button_a);
         mButtonA.setOnClickListener(mControllerConfig.getButtonA().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
 
         Button mButtonB = v.findViewById(R.id.button_b);
         mButtonB.setOnClickListener(mControllerConfig.getButtonB().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
+
+        Button mButtonC = v.findViewById(R.id.button_c);
+        mButtonC.setOnClickListener(mControllerConfig.getButtonC().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
+
+        Button mButtonD = v.findViewById(R.id.button_d);
+        mButtonD.setOnClickListener(mControllerConfig.getButtonD().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
 
         return v;
     }

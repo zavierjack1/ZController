@@ -61,7 +61,6 @@ public class ControllerButton {
     }
 
     public int getMethodInt(){
-        Log.d(Util.LOG_TAG, this.getMethod());
         if (this.getMethod().equals("POST")){
             return Request.Method.POST;
         }
@@ -107,52 +106,58 @@ public class ControllerButton {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Instantiate the RequestQueue.
-                RequestQueue queue = Volley.newRequestQueue(context);
-                //JSONObject myParams = new JSONObject();
+                if (url.equals("") || method == -2) {
+                    mFeedBackMonitor.append(System.getProperty("line.separator") +
+                            "This button config needs at least a URL and a supported Method");
+                } else {
+                    //Instantiate the RequestQueue.
+                    RequestQueue queue = Volley.newRequestQueue(context);
+                    //JSONObject myParams = new JSONObject();
 
-                //Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(method, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                mFeedBackMonitor.append(System.getProperty("line.separator")+
-                                        "Response is: " + response);
-                                Log.d(Util.LOG_TAG, response);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                mFeedBackMonitor.append(System.getProperty("line.separator")+
-                                        "error is: " + error);
-                                Log.d(Util.LOG_TAG, error.toString());
-                            }
-                        }){
+                    //Request a string response from the provided URL.
+                    StringRequest stringRequest = new StringRequest(method, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    mFeedBackMonitor.append(System.getProperty("line.separator") +
+                                            "Response is: " + response);
+                                    Log.d(Util.LOG_TAG, response);
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    mFeedBackMonitor.append(System.getProperty("line.separator") +
+                                            "error is: " + error);
+                                    Log.d(Util.LOG_TAG, error.toString());
+                                }
+                            }) {
                     /*@Override
                     public String getBodyContentType() {
                         return "application/json; charset=utf-8";
                     }*/
 
-                    @Override
-                    public byte[] getBody() {
-                        try {
-                            return requestBody == null ? null : requestBody.getBytes("utf-8");
-                        } catch (UnsupportedEncodingException uee) {
-                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                            return null;
+                        @Override
+                        public byte[] getBody() {
+                            try {
+                                return requestBody == null ? null : requestBody.getBytes("utf-8");
+                            } catch (UnsupportedEncodingException uee) {
+                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                                return null;
+                            }
                         }
-                    }
-                    @Override
-                    public Map<String, String> getHeaders() {
-                        Map<String, String> headers = new HashMap<>();
-                        //headers.put("Content-Type", "application/json");
-                        headers.put("Content-Type", contentType);
-                        return headers;
-                    }
-                };
 
-                queue.add(stringRequest);
+                        @Override
+                        public Map<String, String> getHeaders() {
+                            Map<String, String> headers = new HashMap<>();
+                            //headers.put("Content-Type", "application/json");
+                            headers.put("Content-Type", contentType);
+                            return headers;
+                        }
+                    };
+
+                    queue.add(stringRequest);
+                }
             }
         };
     };
