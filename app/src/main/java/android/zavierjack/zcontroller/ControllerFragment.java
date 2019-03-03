@@ -3,6 +3,7 @@ package android.zavierjack.zcontroller;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class ControllerFragment extends Fragment {
@@ -23,7 +30,86 @@ public class ControllerFragment extends Fragment {
     public static final String EXTRA_CONTROLLER_CONFIG_ID_KEY = "com.android.controllerActivity.ControllerConfigID";
 
     private ControllerConfig mControllerConfig;
-    
+
+    private View.OnClickListener getControllerConfigButtonOnClickListener(final View v, final TextView mFeedBackMonitor, final Button mButton){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Instantiate the RequestQueue.
+                RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+                JSONObject myParams = new JSONObject();
+                if (mButton.equals(v.findViewById(R.id.red_button))){
+                    final String url = mControllerConfig.getRedButtonUrl();
+                    final String requestBody = mControllerConfig.getRedButtonRequestBody();
+                    final String contentType = mControllerConfig.getRedButtonContentType();
+                    final String method = mControllerConfig.getRedButtonMethod();
+                    int methodCD =0;
+
+                    if (method.toUpperCase().equals("POST")){
+                        methodCD = Request.Method.POST;
+                    }
+                    else if (method.toUpperCase().equals("GET")){
+                        methodCD = Request.Method.GET;
+                    }
+
+                    final int methodCd_final = methodCD;
+                    Log.d(Util.LOG_TAG, requestBody);
+
+                    //Request a string response from the provided URL.
+                    StringRequest stringRequest = new StringRequest(methodCd_final, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    mFeedBackMonitor.append(System.getProperty("line.separator")+
+                                            "Response is: " + response);
+                                    Log.d(Util.LOG_TAG, response);
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    mFeedBackMonitor.append(System.getProperty("line.separator")+
+                                            "error is: " + error);
+                                    Log.d(Util.LOG_TAG, error.toString());
+                                }
+                            }){
+                    /*@Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8";
+                    }*/
+
+                        @Override
+                        public byte[] getBody() {
+                            try {
+                                return requestBody == null ? null : requestBody.getBytes("utf-8");
+                            } catch (UnsupportedEncodingException uee) {
+                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                                return null;
+                            }
+                        }
+                        @Override
+                        public Map<String, String> getHeaders() {
+                            Map<String, String> headers = new HashMap<>();
+                            //headers.put("Content-Type", "application/json");
+                            headers.put("Content-Type", contentType);
+                            return headers;
+                        }
+                    };
+
+                    queue.add(stringRequest);
+                }
+                Log.d(Util.LOG_TAG, "RedButtonURL: "+mControllerConfig.getRedButtonUrl());
+                Log.d(Util.LOG_TAG, "RedButtonRequestBody: "+mControllerConfig.getRedButtonRequestBody());
+                Log.d(Util.LOG_TAG, "RedButtonContentType: "+mControllerConfig.getRedButtonContentType());
+                Log.d(Util.LOG_TAG, "RedButtonMethod: "+mControllerConfig.getRedButtonMethod());
+
+                Log.d(Util.LOG_TAG, "Log for gitlab2");
+
+            }
+        };
+    };
+
     public static ControllerFragment newInstance(UUID controllerConfigID){
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_CONTROLLER_CONFIG_ID_KEY, controllerConfigID);
@@ -49,8 +135,8 @@ public class ControllerFragment extends Fragment {
 
         mFeedBackMonitor.setMovementMethod(new ScrollingMovementMethod());
 
-        Button mRedButton = v.findViewById(R.id.red_button);
-        mRedButton.setOnClickListener(mControllerConfig.getRedButton().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
+        final Button mRedButton = v.findViewById(R.id.red_button);
+        mRedButton.setOnClickListener(getControllerConfigButtonOnClickListener(v, mFeedBackMonitor, mRedButton));
 
         Button mBlueButton = v.findViewById(R.id.blue_button);
 

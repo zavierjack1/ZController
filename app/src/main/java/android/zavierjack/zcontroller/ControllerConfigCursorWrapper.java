@@ -43,13 +43,7 @@ public class ControllerConfigCursorWrapper extends CursorWrapper {
         controllerConfig.setName((name));
         controllerConfig.setBackgroundColor(backgroundColor);
         controllerConfig.setDescription(description);
-
-        controllerConfig.setRedButton(new ControllerButton(redButtonURL, redButtonMethod, redButtonRequestBody, redButtonContentType, ControllerButton.BUTTON_COLOR_RED));
-        controllerConfig.setBlueButton(new ControllerButton(blueButtonURL, blueButtonMethod, blueButtonRequestBody, blueButtonContentType, ControllerButton.BUTTON_COLOR_BLUE));
-        controllerConfig.setGreenButton(new ControllerButton(greenButtonURL, greenButtonMethod, greenButtonRequestBody, greenButtonContentType, ControllerButton.BUTTON_COLOR_GREEN));
-        controllerConfig.setYellowButton(new ControllerButton(yellowButtonURL, yellowButtonMethod, yellowButtonRequestBody, yellowButtonContentType, ControllerButton.BUTTON_COLOR_YELLOW));
-/*
-
+        
         controllerConfig.setRedButtonUrl(redButtonURL);
         controllerConfig.setRedButtonMethod(redButtonMethod);
         controllerConfig.setRedButtonRequestBody(redButtonRequestBody);
@@ -69,7 +63,7 @@ public class ControllerConfigCursorWrapper extends CursorWrapper {
         controllerConfig.setYellowButtonMethod(yellowButtonMethod);
         controllerConfig.setYellowButtonRequestBody(yellowButtonRequestBody);
         controllerConfig.setYellowButtonContentType(yellowButtonContentType);
-*/
+
         return controllerConfig;
     }
 }
