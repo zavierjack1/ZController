@@ -141,6 +141,78 @@
                 android:layout_marginEnd="8dp"
                 android:hint="" />
 
+            <TextView
+                android:id="@+id/controller_config_button_b_url_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Button B - URL" />
+
+            <EditText
+                android:id="@+id/controller_config_button_b_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="" />
+
+            <TextView
+                android:id="@+id/controller_config_button_b_method_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Button B - Method" />
+
+            <EditText
+                android:id="@+id/controller_config_button_b_method"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="" />
+
+            <TextView
+                android:id="@+id/controller_config_button_b_request_body_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Button B - Request Body" />
+
+            <EditText
+                android:id="@+id/controller_config_button_b_request_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="" />
+
+            <TextView
+                android:id="@+id/controller_config_button_b_content_type_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Button B - Content Type" />
+
+            <EditText
+                android:id="@+id/controller_config_button_b_content_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="" />
+
             <Button
                 android:id="@+id/controller_config_save"
                 android:layout_width="match_parent"
