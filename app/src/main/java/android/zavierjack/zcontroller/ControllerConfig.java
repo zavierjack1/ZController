@@ -8,6 +8,11 @@ public class ControllerConfig {
     private String mBackgroundColor;
     private String mDescription;
 
+    private ControllerButton mRedButton;
+    private ControllerButton mBlueButton;
+    private ControllerButton mGreenButton;
+    private ControllerButton mYellowButton;
+
     private String mRedButtonUrl;
     private String mRedButtonMethod;
     private String mRedButtonRequestBody;
@@ -194,5 +199,37 @@ public class ControllerConfig {
 
     public void setYellowButtonContentType(String yellowButtonContentType) {
         mYellowButtonContentType = yellowButtonContentType;
+    }
+
+    public ControllerButton getRedButton() {
+        return mRedButton;
+    }
+
+    public void setRedButton(ControllerButton redButton) {
+        mRedButton = redButton;
+    }
+
+    public ControllerButton getBlueButton() {
+        return mBlueButton;
+    }
+
+    public void setBlueButton(ControllerButton blueButton) {
+        mBlueButton = blueButton;
+    }
+
+    public ControllerButton getGreenButton() {
+        return mGreenButton;
+    }
+
+    public void setGreenButton(ControllerButton greenButton) {
+        mGreenButton = greenButton;
+    }
+
+    public ControllerButton getYellowButton() {
+        return mYellowButton;
+    }
+
+    public void setYellowButton(ControllerButton yellowButton) {
+        mYellowButton = yellowButton;
     }
 }
