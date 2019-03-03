@@ -17,10 +17,10 @@ public class ControllerConfigFragment extends Fragment {
     private EditText mNameField;
     private EditText mDescriptionField;
     private Button mBackgroundColorButton;
-    private EditText mRedButtonURLField;
-    private EditText mRedButtonMethodField;
-    private EditText mRedButtonRequestBodyField;
-    private EditText mRedButtonContentTypeField;
+    private EditText mButtonAURLField;
+    private EditText mButtonAMethodField;
+    private EditText mButtonARequestBodyField;
+    private EditText mButtonAContentTypeField;
 
     private Button mSaveButton;
 
@@ -57,18 +57,18 @@ public class ControllerConfigFragment extends Fragment {
         mNameField = v.findViewById(R.id.controller_config_name);
         mDescriptionField = v.findViewById(R.id.controller_config_description);
         mBackgroundColorButton = v.findViewById(R.id.controller_config_background_color);
-        mRedButtonURLField = v.findViewById(R.id.controller_config_red_button_url);
-        mRedButtonMethodField = v.findViewById(R.id.controller_config_red_button_method);
-        mRedButtonRequestBodyField = v.findViewById(R.id.controller_config_red_button_request_body);
-        mRedButtonContentTypeField = v.findViewById(R.id.controller_config_red_button_content_type);
+        mButtonAURLField = v.findViewById(R.id.controller_config_button_a_url);
+        mButtonAMethodField = v.findViewById(R.id.controller_config_button_a_method);
+        mButtonARequestBodyField = v.findViewById(R.id.controller_config_button_a_request_body);
+        mButtonAContentTypeField = v.findViewById(R.id.controller_config_button_a_content_type);
 
         mNameField.setText(mControllerConfig.getName());
         mDescriptionField.setText(mControllerConfig.getDescription());
         //mBackgroundColorButton.setText(mControllerConfig.getName());
-        mRedButtonURLField.setText(mControllerConfig.getRedButtonUrl());
-        mRedButtonMethodField.setText(mControllerConfig.getRedButtonMethod());
-        mRedButtonRequestBodyField.setText(mControllerConfig.getRedButtonRequestBody());
-        mRedButtonContentTypeField.setText(mControllerConfig.getRedButtonContentType());
+        mButtonAURLField.setText(mControllerConfig.getButtonA().getUrl());
+        mButtonAMethodField.setText(mControllerConfig.getButtonA().getMethod());
+        mButtonARequestBodyField.setText(mControllerConfig.getButtonA().getRequestBody());
+        mButtonAContentTypeField.setText(mControllerConfig.getButtonA().getContentType());
 
         mSaveButton = v.findViewById(R.id.controller_config_save);
 
@@ -77,11 +77,10 @@ public class ControllerConfigFragment extends Fragment {
             public void onClick(View view) {
                 mControllerConfig.setName(mNameField.getText().toString());
                 mControllerConfig.setDescription(mDescriptionField.getText().toString());
-                //backgroundcolor
-                mControllerConfig.setRedButtonUrl(mRedButtonURLField.getText().toString());
-                mControllerConfig.setRedButtonMethod(mRedButtonMethodField.getText().toString());
-                mControllerConfig.setRedButtonRequestBody(mRedButtonRequestBodyField.getText().toString());
-                mControllerConfig.setRedButtonContentType(mRedButtonContentTypeField.getText().toString());
+                mControllerConfig.getButtonA().setUrl(mButtonAURLField.getText().toString());
+                mControllerConfig.getButtonA().setMethod(mButtonAMethodField.getText().toString());
+                mControllerConfig.getButtonA().setRequestBody(mButtonARequestBodyField.getText().toString());
+                mControllerConfig.getButtonA().setContentType(mButtonAContentTypeField.getText().toString());
                 getActivity().finish();
             }
         });

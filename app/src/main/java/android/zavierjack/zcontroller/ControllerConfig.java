@@ -8,25 +8,10 @@ public class ControllerConfig {
     private String mBackgroundColor;
     private String mDescription;
 
-    private String mRedButtonUrl;
-    private String mRedButtonMethod;
-    private String mRedButtonRequestBody;
-    private String mRedButtonContentType;
-
-    private String mBlueButtonUrl;
-    private String mBlueButtonMethod;
-    private String mBlueButtonRequestBody;
-    private String mBlueButtonContentType;
-
-    private String mGreenButtonUrl;
-    private String mGreenButtonMethod;
-    private String mGreenButtonRequestBody;
-    private String mGreenButtonContentType;
-
-    private String mYellowButtonUrl;
-    private String mYellowButtonMethod;
-    private String mYellowButtonRequestBody;
-    private String mYellowButtonContentType;
+    private ControllerButton mButtonA;
+    private ControllerButton mButtonB;
+    private ControllerButton mButtonC;
+    private ControllerButton mButtonD;
 
     public ControllerConfig(){
         this(UUID.randomUUID());
@@ -67,132 +52,35 @@ public class ControllerConfig {
     public void setDescription(String description) {
         mDescription = description;
     }
-
-    public String getRedButtonUrl() {
-        return mRedButtonUrl;
+    public ControllerButton getButtonA() {
+        return mButtonA;
     }
 
-    public void setRedButtonUrl(String redButtonUrl) {
-        mRedButtonUrl = redButtonUrl;
+    public void setButtonA(ControllerButton buttonA) {
+        mButtonA = buttonA;
     }
 
-    public String getRedButtonMethod() {
-        return mRedButtonMethod;
+    public ControllerButton getButtonB() {
+        return mButtonB;
     }
 
-    public void setRedButtonMethod(String redButtonMethod) {
-        mRedButtonMethod = redButtonMethod;
+    public void setButtonB(ControllerButton buttonB) {
+        mButtonB = buttonB;
     }
 
-    public String getRedButtonRequestBody() {
-        return mRedButtonRequestBody;
+    public ControllerButton getButtonC() {
+        return mButtonC;
     }
 
-    public void setRedButtonRequestBody(String redButtonRequestBody) {
-        mRedButtonRequestBody = redButtonRequestBody;
+    public void setButtonC(ControllerButton buttonC) {
+        mButtonC = buttonC;
     }
 
-    public String getRedButtonContentType() {
-        return mRedButtonContentType;
+    public ControllerButton getButtonD() {
+        return mButtonD;
     }
 
-    public void setRedButtonContentType(String redButtonContentType) {
-        mRedButtonContentType = redButtonContentType;
-    }
-
-    public String getBlueButtonUrl() {
-        return mBlueButtonUrl;
-    }
-
-    public void setBlueButtonUrl(String blueButtonUrl) {
-        mBlueButtonUrl = blueButtonUrl;
-    }
-
-    public String getBlueButtonMethod() {
-        return mBlueButtonMethod;
-    }
-
-    public void setBlueButtonMethod(String blueButtonMethod) {
-        mBlueButtonMethod = blueButtonMethod;
-    }
-
-    public String getBlueButtonRequestBody() {
-        return mBlueButtonRequestBody;
-    }
-
-    public void setBlueButtonRequestBody(String blueButtonRequestBody) {
-        mBlueButtonRequestBody = blueButtonRequestBody;
-    }
-
-    public String getBlueButtonContentType() {
-        return mBlueButtonContentType;
-    }
-
-    public void setBlueButtonContentType(String blueButtonContentType) {
-        mBlueButtonContentType = blueButtonContentType;
-    }
-
-    public String getGreenButtonUrl() {
-        return mGreenButtonUrl;
-    }
-
-    public void setGreenButtonUrl(String greenButtonUrl) {
-        mGreenButtonUrl = greenButtonUrl;
-    }
-
-    public String getGreenButtonMethod() {
-        return mGreenButtonMethod;
-    }
-
-    public void setGreenButtonMethod(String greenButtonMethod) {
-        mGreenButtonMethod = greenButtonMethod;
-    }
-
-    public String getGreenButtonRequestBody() {
-        return mGreenButtonRequestBody;
-    }
-
-    public void setGreenButtonRequestBody(String greenButtonRequestBody) {
-        mGreenButtonRequestBody = greenButtonRequestBody;
-    }
-
-    public String getGreenButtonContentType() {
-        return mGreenButtonContentType;
-    }
-
-    public void setGreenButtonContentType(String greenButtonContentType) {
-        mGreenButtonContentType = greenButtonContentType;
-    }
-
-    public String getYellowButtonUrl() {
-        return mYellowButtonUrl;
-    }
-
-    public void setYellowButtonUrl(String yellowButtonUrl) {
-        mYellowButtonUrl = yellowButtonUrl;
-    }
-
-    public String getYellowButtonMethod() {
-        return mYellowButtonMethod;
-    }
-
-    public void setYellowButtonMethod(String yellowButtonMethod) {
-        mYellowButtonMethod = yellowButtonMethod;
-    }
-
-    public String getYellowButtonRequestBody() {
-        return mYellowButtonRequestBody;
-    }
-
-    public void setYellowButtonRequestBody(String yellowButtonRequestBody) {
-        mYellowButtonRequestBody = yellowButtonRequestBody;
-    }
-
-    public String getYellowButtonContentType() {
-        return mYellowButtonContentType;
-    }
-
-    public void setYellowButtonContentType(String yellowButtonContentType) {
-        mYellowButtonContentType = yellowButtonContentType;
+    public void setButtonD(ControllerButton buttonD) {
+        mButtonD = buttonD;
     }
 }

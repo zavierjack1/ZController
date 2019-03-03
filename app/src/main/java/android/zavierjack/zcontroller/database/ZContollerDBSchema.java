@@ -11,25 +11,25 @@ public class ZContollerDBSchema {
             public static final String BACKGROUND_COLOR = "background_color";
             public static final String DESCRIPTION = "description";
 
-            public static final String RED_BUTTON_URL = "red_button_url";
-            public static final String RED_BUTTON_METHOD = "red_button_method";
-            public static final String RED_BUTTON_POST_PARAMS = "red_button_post_params";
-            public static final String RED_BUTTON_CONTENT_TYPE = "red_button_content_type";
+            public static final String BUTTON_A_URL = "button_a_url";
+            public static final String BUTTON_A_METHOD = "button_a_method";
+            public static final String BUTTON_A_POST_PARAMS = "button_a_post_params";
+            public static final String BUTTON_A_CONTENT_TYPE = "button_a_content_type";
 
-            public static final String BLUE_BUTTON_URL = "blue_button_url";
-            public static final String BLUE_BUTTON_METHOD = "blue_button_method";
-            public static final String BLUE_BUTTON_POST_PARAMS = "blue_button_post_params";
-            public static final String BLUE_BUTTON_CONTENT_TYPE = "blue_button_content_type";
+            public static final String BUTTON_B_URL = "button_b_url";
+            public static final String BUTTON_B_METHOD = "button_b_method";
+            public static final String BUTTON_B_POST_PARAMS = "button_b_post_params";
+            public static final String BUTTON_B_CONTENT_TYPE = "button_b_content_type";
 
-            public static final String GREEN_BUTTON_URL = "green_button_url";
-            public static final String GREEN_BUTTON_METHOD = "green_button_method";
-            public static final String GREEN_BUTTON_POST_PARAMS = "green_button_post_params";
-            public static final String GREEN_BUTTON_CONTENT_TYPE = "green_button_content_type";
+            public static final String BUTTON_C_URL = "button_c_url";
+            public static final String BUTTON_C_METHOD = "button_c_method";
+            public static final String BUTTON_C_POST_PARAMS = "button_c_post_params";
+            public static final String BUTTON_C_CONTENT_TYPE = "button_c_content_type";
 
-            public static final String YELLOW_BUTTON_URL = "yellow_button_url";
-            public static final String YELLOW_BUTTON_METHOD = "yellow_button_method";
-            public static final String YELLOW_BUTTON_POST_PARAMS = "yellow_button_post_params";
-            public static final String YELLOW_BUTTON_CONTENT_TYPE = "yellow_button_content_type";
+            public static final String BUTTON_D_URL = "button_d_url";
+            public static final String BUTTON_D_METHOD = "button_d_method";
+            public static final String BUTTON_D_POST_PARAMS = "button_d_post_params";
+            public static final String BUTTON_D_CONTENT_TYPE = "button_d_content_type";
         }
     }
 

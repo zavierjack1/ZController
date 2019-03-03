@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.zavierjack.zcontroller.database.ZContollerDBSchema.ControllerConfigTable;
 
 public class ZControllerDOAHelper extends SQLiteOpenHelper{
-    private static final int VERSION = 2;
+    private static final int VERSION = 3;
     private static String DATABASE_NAME = "zControllerDatabase.db";
 
     public ZControllerDOAHelper(Context context){
@@ -21,29 +21,29 @@ public class ZControllerDOAHelper extends SQLiteOpenHelper{
                 ControllerConfigTable.Cols.NAME + ", " +
                 ControllerConfigTable.Cols.BACKGROUND_COLOR + ", "+
                 ControllerConfigTable.Cols.DESCRIPTION + ", "+
-                ControllerConfigTable.Cols.RED_BUTTON_URL + ", "+
-                ControllerConfigTable.Cols.RED_BUTTON_METHOD + ", "+
-                ControllerConfigTable.Cols.RED_BUTTON_POST_PARAMS + ", "+
-                ControllerConfigTable.Cols.RED_BUTTON_CONTENT_TYPE + ", "+
-                ControllerConfigTable.Cols.BLUE_BUTTON_URL + ", "+
-                ControllerConfigTable.Cols.BLUE_BUTTON_METHOD + ", "+
-                ControllerConfigTable.Cols.BLUE_BUTTON_POST_PARAMS + ", "+
-                ControllerConfigTable.Cols.BLUE_BUTTON_CONTENT_TYPE + ", "+
-                ControllerConfigTable.Cols.GREEN_BUTTON_URL + ", "+
-                ControllerConfigTable.Cols.GREEN_BUTTON_METHOD + ", "+
-                ControllerConfigTable.Cols.GREEN_BUTTON_POST_PARAMS + ", "+
-                ControllerConfigTable.Cols.GREEN_BUTTON_CONTENT_TYPE + ", "+
-                ControllerConfigTable.Cols.YELLOW_BUTTON_URL + ", "+
-                ControllerConfigTable.Cols.YELLOW_BUTTON_METHOD + ", "+
-                ControllerConfigTable.Cols.YELLOW_BUTTON_POST_PARAMS + ", "+
-                ControllerConfigTable.Cols.YELLOW_BUTTON_CONTENT_TYPE +
+                ControllerConfigTable.Cols.BUTTON_A_URL + ", "+
+                ControllerConfigTable.Cols.BUTTON_A_METHOD + ", "+
+                ControllerConfigTable.Cols.BUTTON_A_POST_PARAMS + ", "+
+                ControllerConfigTable.Cols.BUTTON_A_CONTENT_TYPE + ", "+
+                ControllerConfigTable.Cols.BUTTON_B_URL + ", "+
+                ControllerConfigTable.Cols.BUTTON_B_METHOD + ", "+
+                ControllerConfigTable.Cols.BUTTON_B_POST_PARAMS + ", "+
+                ControllerConfigTable.Cols.BUTTON_B_CONTENT_TYPE + ", "+
+                ControllerConfigTable.Cols.BUTTON_C_URL + ", "+
+                ControllerConfigTable.Cols.BUTTON_C_METHOD + ", "+
+                ControllerConfigTable.Cols.BUTTON_C_POST_PARAMS + ", "+
+                ControllerConfigTable.Cols.BUTTON_C_CONTENT_TYPE + ", "+
+                ControllerConfigTable.Cols.BUTTON_D_URL + ", "+
+                ControllerConfigTable.Cols.BUTTON_D_METHOD + ", "+
+                ControllerConfigTable.Cols.BUTTON_D_POST_PARAMS + ", "+
+                ControllerConfigTable.Cols.BUTTON_D_CONTENT_TYPE +
                 ")"
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        if (oldVersion < 2) {
+        if (oldVersion < VERSION) {
             db.execSQL("DROP TABLE IF EXISTS " + ControllerConfigTable.NAME);
             onCreate(db);
         }

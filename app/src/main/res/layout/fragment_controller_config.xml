@@ -70,16 +70,16 @@
                 android:text="background_color" />
 
             <TextView
-                android:id="@+id/controller_config_red_button_url_label"
+                android:id="@+id/controller_config_button_a_url_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Red Button URL" />
+                android:text="Button A - URL" />
 
             <EditText
-                android:id="@+id/controller_config_red_button_url"
+                android:id="@+id/controller_config_button_a_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -88,16 +88,16 @@
                 android:hint="" />
 
             <TextView
-                android:id="@+id/controller_config_red_button_method_label"
+                android:id="@+id/controller_config_button_a_method_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Red Button Method" />
+                android:text="Button A - Method" />
 
             <EditText
-                android:id="@+id/controller_config_red_button_method"
+                android:id="@+id/controller_config_button_a_method"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -106,16 +106,16 @@
                 android:hint="" />
 
             <TextView
-                android:id="@+id/controller_config_red_button_request_body_label"
+                android:id="@+id/controller_config_button_a_request_body_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Red Button Request Body" />
+                android:text="Button A - Request Body" />
 
             <EditText
-                android:id="@+id/controller_config_red_button_request_body"
+                android:id="@+id/controller_config_button_a_request_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -124,16 +124,16 @@
                 android:hint="" />
 
             <TextView
-                android:id="@+id/controller_config_red_button_content_type_label"
+                android:id="@+id/controller_config_button_a_content_type_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Red Button Content Type" />
+                android:text="Button A - Content Type" />
 
             <EditText
-                android:id="@+id/controller_config_red_button_content_type"
+                android:id="@+id/controller_config_button_a_content_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
