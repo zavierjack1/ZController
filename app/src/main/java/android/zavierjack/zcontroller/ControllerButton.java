@@ -1,8 +1,11 @@
 package android.zavierjack.zcontroller;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -18,11 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerButton {
-    public static final int BUTTON_COLOR_RED = 1;
-    public static final int BUTTON_COLOR_BLUE = 2;
-    public static final int BUTTON_COLOR_GREEN = 3;
-    public static final int BUTTON_COLOR_YELLOW = 4;
-
     private String mUrl;
     private String mMethod;
     private String mRequestBody;
@@ -97,7 +95,7 @@ public class ControllerButton {
         mColor = color;
     }
 
-    public View.OnClickListener getControllerConfigButtonOnClickListener(final Context context, final View v, final TextView mFeedBackMonitor){
+    public View.OnClickListener getControllerConfigButtonOnClickListener(final Context context, final View v, final ScrollView responseMonitorScrollView){
         final String url = this.getUrl();
         final String requestBody = this.getRequestBody();
         final String contentType = this.getContentType();
@@ -107,7 +105,7 @@ public class ControllerButton {
             @Override
             public void onClick(View view) {
                 if (url.equals("") || method == -2) {
-                    mFeedBackMonitor.append(System.getProperty("line.separator") +
+                    responseMonitorAppend(responseMonitorScrollView, System.getProperty("line.separator") +
                             "This button config needs at least a URL and a supported Method");
                 } else {
                     //Instantiate the RequestQueue.
@@ -116,26 +114,27 @@ public class ControllerButton {
 
                     //Request a string response from the provided URL.
                     StringRequest stringRequest = new StringRequest(method, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    mFeedBackMonitor.append(System.getProperty("line.separator") +
-                                            "Response is: " + response);
-                                    Log.d(Util.LOG_TAG, response);
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    mFeedBackMonitor.append(System.getProperty("line.separator") +
-                                            "error is: " + error);
-                                    Log.d(Util.LOG_TAG, error.toString());
-                                }
-                            }) {
-                    /*@Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8";
-                    }*/
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                responseMonitorAppend(responseMonitorScrollView, System.getProperty("line.separator") +
+                                        "Response is: " + response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                responseMonitorAppend(responseMonitorScrollView, System.getProperty("line.separator") +
+                                        "error is: " + error);
+
+                                Log.d(Util.LOG_TAG, error.toString());
+                            }
+                        }
+                    ) {
+                        /*@Override
+                        public String getBodyContentType() {
+                            return "application/json; charset=utf-8";
+                        }*/
 
                         @Override
                         public byte[] getBody() {
@@ -161,4 +160,22 @@ public class ControllerButton {
             }
         };
     };
+
+    private void responseMonitorAppend(final ScrollView scrollView, String string){
+        final TextView textView = (TextView) scrollView.getChildAt(0);
+
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append(string);
+        spannableStringBuilder.setSpan(new ForegroundColorSpan(this.getColor()), 0, spannableStringBuilder.length(), 0);
+        textView.append(spannableStringBuilder);
+
+        textView.post(new Runnable()
+        {
+            public void run()
+            {
+                //mResponseMonitorScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                scrollView.smoothScrollTo(0, textView.getBottom());
+            }
+        });
+    }
 }

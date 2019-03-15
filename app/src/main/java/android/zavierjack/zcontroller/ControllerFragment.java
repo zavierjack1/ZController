@@ -1,13 +1,15 @@
 package android.zavierjack.zcontroller;
 
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ScrollView;
 
 import java.util.UUID;
 
@@ -37,11 +39,6 @@ public class ControllerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-/*
-        Display display = ((WindowManager) this.getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        int rotation = display.getRotation();
-        Log.d(Util.LOG_TAG, "rotation: "+rotation);
-*/
         View v;
         if (getResources().getConfiguration().orientation ==Configuration.ORIENTATION_PORTRAIT){
              v = inflater.inflate(R.layout.fragment_controller_portrait, container, false);
@@ -52,21 +49,24 @@ public class ControllerFragment extends Fragment {
         else{
             v = inflater.inflate(R.layout.fragment_controller_portrait, container, false);
         }
-        final TextView mFeedBackMonitor = v.findViewById(R.id.feedback_monitor);
+        final ScrollView mResponseMonitorScrollView = v.findViewById(R.id.response_monitor_scrollview);
 
-        //mFeedBackMonitor.setMovementMethod(new ScrollingMovementMethod());
-
+        Log.d(Util.LOG_TAG, mResponseMonitorScrollView.getChildAt(0).toString());
         Button mButtonA = v.findViewById(R.id.button_a);
-        mButtonA.setOnClickListener(mControllerConfig.getButtonA().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
+        mControllerConfig.getButtonA().setColor(((ColorDrawable) mButtonA.getBackground()).getColor());
+        mButtonA.setOnClickListener(mControllerConfig.getButtonA().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mResponseMonitorScrollView));
 
         Button mButtonB = v.findViewById(R.id.button_b);
-        mButtonB.setOnClickListener(mControllerConfig.getButtonB().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
+        mControllerConfig.getButtonB().setColor(((ColorDrawable) mButtonB.getBackground()).getColor());
+        mButtonB.setOnClickListener(mControllerConfig.getButtonB().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mResponseMonitorScrollView));
 
         Button mButtonC = v.findViewById(R.id.button_c);
-        mButtonC.setOnClickListener(mControllerConfig.getButtonC().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
+        mControllerConfig.getButtonC().setColor(((ColorDrawable) mButtonC.getBackground()).getColor());
+        mButtonC.setOnClickListener(mControllerConfig.getButtonC().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mResponseMonitorScrollView));
 
         Button mButtonD = v.findViewById(R.id.button_d);
-        mButtonD.setOnClickListener(mControllerConfig.getButtonD().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
+        mControllerConfig.getButtonD().setColor(((ColorDrawable) mButtonD.getBackground()).getColor());
+        mButtonD.setOnClickListener(mControllerConfig.getButtonD().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mResponseMonitorScrollView));
 
         return v;
     }
