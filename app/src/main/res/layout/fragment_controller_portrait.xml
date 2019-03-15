@@ -8,21 +8,33 @@
     android:weightSum="2"
     android:background="#a9a9a9">
 
-    <TextView
-        android:id="@+id/feedback_monitor"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/feedback_monitor_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:layout_weight="1"
-        android:gravity="top|left"
-        android:scrollbars="vertical"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/white"
-        android:textIsSelectable="true"
-        android:nestedScrollingEnabled="false"
-    />
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/feedback_monitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:background="@android:color/white"
+            android:textIsSelectable="true"
+        />
+    </ScrollView>
+
+
+    <!--android:layout_height="match_parent"-->
+
+    <!--android:nestedScrollingEnabled="false"
+    android:scrollbars="vertical"-->
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

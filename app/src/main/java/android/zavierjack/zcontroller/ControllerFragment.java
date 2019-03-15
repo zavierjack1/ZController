@@ -1,8 +1,8 @@
 package android.zavierjack.zcontroller;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,10 +37,24 @@ public class ControllerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_controller, container, false);
+/*
+        Display display = ((WindowManager) this.getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int rotation = display.getRotation();
+        Log.d(Util.LOG_TAG, "rotation: "+rotation);
+*/
+        View v;
+        if (getResources().getConfiguration().orientation ==Configuration.ORIENTATION_PORTRAIT){
+             v = inflater.inflate(R.layout.fragment_controller_portrait, container, false);
+        }
+        else if (getResources().getConfiguration().orientation ==Configuration.ORIENTATION_LANDSCAPE){
+            v = inflater.inflate(R.layout.fragment_controller_landscape, container, false);
+        }
+        else{
+            v = inflater.inflate(R.layout.fragment_controller_portrait, container, false);
+        }
         final TextView mFeedBackMonitor = v.findViewById(R.id.feedback_monitor);
 
-        mFeedBackMonitor.setMovementMethod(new ScrollingMovementMethod());
+        //mFeedBackMonitor.setMovementMethod(new ScrollingMovementMethod());
 
         Button mButtonA = v.findViewById(R.id.button_a);
         mButtonA.setOnClickListener(mControllerConfig.getButtonA().getControllerConfigButtonOnClickListener(getActivity().getApplicationContext(), v, mFeedBackMonitor));
