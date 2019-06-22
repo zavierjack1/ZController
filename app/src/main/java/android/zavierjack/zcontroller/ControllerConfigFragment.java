@@ -47,7 +47,6 @@ public class ControllerConfigFragment extends Fragment {
     @Override
     public void onPause(){
         super.onPause();
-
         ZControllerDOA.get(getActivity()).updateControllerConfig(mControllerConfig);
     }
 
@@ -58,6 +57,86 @@ public class ControllerConfigFragment extends Fragment {
         ControllerConfigFragment fragment = new ControllerConfigFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    private EditText getUrlField(String buttonName){
+        EditText returnEditText;
+        switch (buttonName){
+            case "A":
+                returnEditText = mButtonAURLField;
+                break;
+            case "B":
+                returnEditText = mButtonBURLField;
+                break;
+            case "C":
+                returnEditText = mButtonCURLField;
+                break;
+            default:
+                returnEditText = mButtonDURLField;
+                break;
+        }
+
+        return returnEditText;
+    }
+
+    private EditText getMethodField(String buttonName){
+        EditText returnEditText;
+        switch (buttonName){
+            case "A":
+                returnEditText = mButtonAMethodField;
+                break;
+            case "B":
+                returnEditText = mButtonBMethodField;
+                break;
+            case "C":
+                returnEditText = mButtonCMethodField;
+                break;
+            default:
+                returnEditText = mButtonDMethodField;
+                break;
+        }
+
+        return returnEditText;
+    }
+
+    private EditText getRequestBodyField(String buttonName){
+        EditText returnEditText;
+        switch (buttonName){
+            case "A":
+                returnEditText = mButtonARequestBodyField;
+                break;
+            case "B":
+                returnEditText = mButtonBRequestBodyField;
+                break;
+            case "C":
+                returnEditText = mButtonCRequestBodyField;
+                break;
+            default:
+                returnEditText = mButtonDRequestBodyField;
+                break;
+        }
+
+        return returnEditText;
+    }
+
+    private EditText getContentTypeField(String buttonName){
+        EditText returnEditText;
+        switch (buttonName){
+            case "A":
+                returnEditText = mButtonAContentTypeField;
+                break;
+            case "B":
+                returnEditText = mButtonBContentTypeField;
+                break;
+            case "C":
+                returnEditText = mButtonCContentTypeField;
+                break;
+            default:
+                returnEditText = mButtonDContentTypeField;
+                break;
+        }
+
+        return returnEditText;
     }
 
     @Override
@@ -92,54 +171,27 @@ public class ControllerConfigFragment extends Fragment {
         mNameField.setText(mControllerConfig.getName());
         mDescriptionField.setText(mControllerConfig.getDescription());
         //mBackgroundColorButton.setText(mControllerConfig.getName());
+        //for each button, set the button fields
+        for (String buttonName: mControllerConfig.getButtons().keySet()){
+            getUrlField(buttonName).setText(mControllerConfig.getButtons().get(buttonName).getUrl());
+            getMethodField(buttonName).setText(mControllerConfig.getButtons().get(buttonName).getMethod());
+            getRequestBodyField(buttonName).setText(mControllerConfig.getButtons().get(buttonName).getRequestBody());
+            getContentTypeField(buttonName).setText(mControllerConfig.getButtons().get(buttonName).getContentType());
+        }
 
-        mButtonAURLField.setText(mControllerConfig.getButtonA().getUrl());
-        mButtonAMethodField.setText(mControllerConfig.getButtonA().getMethod());
-        mButtonARequestBodyField.setText(mControllerConfig.getButtonA().getRequestBody());
-        mButtonAContentTypeField.setText(mControllerConfig.getButtonA().getContentType());
-
-        mButtonBURLField.setText(mControllerConfig.getButtonB().getUrl());
-        mButtonBMethodField.setText(mControllerConfig.getButtonB().getMethod());
-        mButtonBRequestBodyField.setText(mControllerConfig.getButtonB().getRequestBody());
-        mButtonBContentTypeField.setText(mControllerConfig.getButtonB().getContentType());
-
-        mButtonCURLField.setText(mControllerConfig.getButtonC().getUrl());
-        mButtonCMethodField.setText(mControllerConfig.getButtonC().getMethod());
-        mButtonCRequestBodyField.setText(mControllerConfig.getButtonC().getRequestBody());
-        mButtonCContentTypeField.setText(mControllerConfig.getButtonC().getContentType());
-
-        mButtonDURLField.setText(mControllerConfig.getButtonD().getUrl());
-        mButtonDMethodField.setText(mControllerConfig.getButtonD().getMethod());
-        mButtonDRequestBodyField.setText(mControllerConfig.getButtonD().getRequestBody());
-        mButtonDContentTypeField.setText(mControllerConfig.getButtonD().getContentType());
-        
         mSaveButton = v.findViewById(R.id.controller_config_save);
-
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mControllerConfig.setName(mNameField.getText().toString());
                 mControllerConfig.setDescription(mDescriptionField.getText().toString());
-                mControllerConfig.getButtonA().setUrl(mButtonAURLField.getText().toString());
-                mControllerConfig.getButtonA().setMethod(mButtonAMethodField.getText().toString());
-                mControllerConfig.getButtonA().setRequestBody(mButtonARequestBodyField.getText().toString());
-                mControllerConfig.getButtonA().setContentType(mButtonAContentTypeField.getText().toString());
+                for (String buttonName: mControllerConfig.getButtons().keySet()) {
+                    mControllerConfig.getButtons().get(buttonName).setUrl(getUrlField(buttonName).getText().toString());
+                    mControllerConfig.getButtons().get(buttonName).setMethod(getMethodField(buttonName).getText().toString());
+                    mControllerConfig.getButtons().get(buttonName).setRequestBody(getRequestBodyField(buttonName).getText().toString());
+                    mControllerConfig.getButtons().get(buttonName).setContentType(getContentTypeField(buttonName).getText().toString());
 
-                mControllerConfig.getButtonB().setUrl(mButtonBURLField.getText().toString());
-                mControllerConfig.getButtonB().setMethod(mButtonBMethodField.getText().toString());
-                mControllerConfig.getButtonB().setRequestBody(mButtonBRequestBodyField.getText().toString());
-                mControllerConfig.getButtonB().setContentType(mButtonBContentTypeField.getText().toString());
-
-                mControllerConfig.getButtonC().setUrl(mButtonCURLField.getText().toString());
-                mControllerConfig.getButtonC().setMethod(mButtonCMethodField.getText().toString());
-                mControllerConfig.getButtonC().setRequestBody(mButtonCRequestBodyField.getText().toString());
-                mControllerConfig.getButtonC().setContentType(mButtonCContentTypeField.getText().toString());
-
-                mControllerConfig.getButtonD().setUrl(mButtonDURLField.getText().toString());
-                mControllerConfig.getButtonD().setMethod(mButtonDMethodField.getText().toString());
-                mControllerConfig.getButtonD().setRequestBody(mButtonDRequestBodyField.getText().toString());
-                mControllerConfig.getButtonD().setContentType(mButtonDContentTypeField.getText().toString());
-                
+                }
                 getActivity().finish();
             }
         });

@@ -4,10 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.zavierjack.zcontroller.database.ZContollerDBSchema.ControllerConfigTable;
+import android.zavierjack.zcontroller.database.ContollerDBSchema.ControllerConfigTable;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class ZControllerDOA {
@@ -27,7 +31,7 @@ public class ZControllerDOA {
     //private because we want this to be a singleton class
     private ZControllerDOA(Context context){
         mContext = context.getApplicationContext();
-        mDatabase = new ZControllerDOAHelper(mContext).getWritableDatabase();
+        mDatabase = new ControllerDOAHelper(mContext).getWritableDatabase();
     }
 
     public void addControllerConfig(ControllerConfig c){
@@ -88,7 +92,6 @@ public class ZControllerDOA {
     public void updateControllerConfig(ControllerConfig controllerConfig) {
         String uuidString = controllerConfig.getID().toString();
         ContentValues values = getContentValues(controllerConfig);
-
         mDatabase.update(
                 ControllerConfigTable.NAME, values,
                 ControllerConfigTable.Cols.UUID + " = ?",
@@ -98,30 +101,35 @@ public class ZControllerDOA {
 
     private static ContentValues getContentValues(ControllerConfig controllerConfig){
         ContentValues values = new ContentValues();
+
+        ControllerConfigJson controllerConfigJson = new ControllerConfigJson();
+        JSONObject buttonsConfigJson  = new JSONObject();
+
+        //Controller Config
+        try{controllerConfigJson.put("name", controllerConfig.getName());} catch(JSONException e){Util.log(e.toString());}
+        try{controllerConfigJson.put("description", controllerConfig.getDescription());} catch(JSONException e){Util.log(e.toString());}
+        try{controllerConfigJson.put("background_color", controllerConfig.getBackgroundColor());} catch(JSONException e){Util.log(e.toString());}
+        //try{controllerConfigJson.put("template", controllerConfig.getName());} catch(JSONException e){Util.log(e.toString());}
+
+        //Button Config
+        for (Map.Entry<String,ControllerButton> controllerButtonEntry: controllerConfig.getButtons().entrySet()){
+            //overwrite buttonConfigJson with next button
+            ButtonConfigJson buttonConfigJson = new ButtonConfigJson();
+            try{buttonConfigJson.put("url", controllerButtonEntry.getValue().getUrl());} catch(JSONException e){Util.log(e.toString());}
+            try{buttonConfigJson.put("method", controllerButtonEntry.getValue().getMethod());} catch(JSONException e){Util.log(e.toString());}
+            try{buttonConfigJson.put("request_body", controllerButtonEntry.getValue().getRequestBody());} catch(JSONException e){Util.log(e.toString());}
+            try{buttonConfigJson.put("content_type", controllerButtonEntry.getValue().getContentType());} catch(JSONException e){Util.log(e.toString());}
+
+            //put the button config in the buttons JSON
+            try{buttonsConfigJson.put(controllerButtonEntry.getValue().getName(), buttonConfigJson);} catch(JSONException e){Util.log(e.toString());}
+        }
+
+        //add buttonsjson to controllerjson
+        try{controllerConfigJson.put("buttons", buttonsConfigJson);} catch(JSONException e){Util.log(e.toString());}
+
         values.put(ControllerConfigTable.Cols.UUID, controllerConfig.getID().toString());
         values.put(ControllerConfigTable.Cols.NAME, controllerConfig.getName());
-        values.put(ControllerConfigTable.Cols.DESCRIPTION, controllerConfig.getDescription());
-        values.put(ControllerConfigTable.Cols.BACKGROUND_COLOR, controllerConfig.getBackgroundColor());
-
-        values.put(ControllerConfigTable.Cols.BUTTON_A_URL, controllerConfig.getButtonA().getUrl());
-        values.put(ControllerConfigTable.Cols.BUTTON_A_METHOD, controllerConfig.getButtonA().getMethod());
-        values.put(ControllerConfigTable.Cols.BUTTON_A_POST_PARAMS, controllerConfig.getButtonA().getRequestBody());
-        values.put(ControllerConfigTable.Cols.BUTTON_A_CONTENT_TYPE, controllerConfig.getButtonA().getContentType());
-
-        values.put(ControllerConfigTable.Cols.BUTTON_B_URL, controllerConfig.getButtonB().getUrl());
-        values.put(ControllerConfigTable.Cols.BUTTON_B_METHOD, controllerConfig.getButtonB().getMethod());
-        values.put(ControllerConfigTable.Cols.BUTTON_B_POST_PARAMS, controllerConfig.getButtonB().getRequestBody());
-        values.put(ControllerConfigTable.Cols.BUTTON_B_CONTENT_TYPE, controllerConfig.getButtonB().getContentType());
-
-        values.put(ControllerConfigTable.Cols.BUTTON_C_URL, controllerConfig.getButtonC().getUrl());
-        values.put(ControllerConfigTable.Cols.BUTTON_C_METHOD, controllerConfig.getButtonC().getMethod());
-        values.put(ControllerConfigTable.Cols.BUTTON_C_POST_PARAMS, controllerConfig.getButtonC().getRequestBody());
-        values.put(ControllerConfigTable.Cols.BUTTON_C_CONTENT_TYPE, controllerConfig.getButtonC().getContentType());
-
-        values.put(ControllerConfigTable.Cols.BUTTON_D_URL, controllerConfig.getButtonD().getUrl());
-        values.put(ControllerConfigTable.Cols.BUTTON_D_METHOD, controllerConfig.getButtonD().getMethod());
-        values.put(ControllerConfigTable.Cols.BUTTON_D_POST_PARAMS, controllerConfig.getButtonD().getRequestBody());
-        values.put(ControllerConfigTable.Cols.BUTTON_D_CONTENT_TYPE, controllerConfig.getButtonD().getContentType());
+        values.put(ControllerConfigTable.Cols.CONFIG_JSON, controllerConfigJson.toString());
 
         return values;
     }

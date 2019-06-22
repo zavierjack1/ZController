@@ -1,5 +1,6 @@
 package android.zavierjack.zcontroller;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class ControllerConfig {
@@ -8,10 +9,7 @@ public class ControllerConfig {
     private String mBackgroundColor;
     private String mDescription;
 
-    private ControllerButton mButtonA;
-    private ControllerButton mButtonB;
-    private ControllerButton mButtonC;
-    private ControllerButton mButtonD;
+    private HashMap<String, ControllerButton> mButtons;
 
     public ControllerConfig(){
         this(UUID.randomUUID());
@@ -19,6 +17,11 @@ public class ControllerConfig {
 
     public ControllerConfig(UUID id){
         mID = id;
+        mButtons = new HashMap<>();
+        mButtons.put("A", new ControllerButton("A"));
+        mButtons.put("B", new ControllerButton("B"));
+        mButtons.put("C", new ControllerButton("C"));
+        mButtons.put("D", new ControllerButton("D"));
     }
 
     public UUID getID() {
@@ -52,35 +55,23 @@ public class ControllerConfig {
     public void setDescription(String description) {
         mDescription = description;
     }
-    public ControllerButton getButtonA() {
-        return mButtonA;
+
+    public HashMap<String, ControllerButton> getButtons() {
+        return mButtons;
     }
 
-    public void setButtonA(ControllerButton buttonA) {
-        mButtonA = buttonA;
+    public void setButtons(HashMap<String, ControllerButton> buttons) {
+        mButtons = buttons;
     }
 
-    public ControllerButton getButtonB() {
-        return mButtonB;
-    }
-
-    public void setButtonB(ControllerButton buttonB) {
-        mButtonB = buttonB;
-    }
-
-    public ControllerButton getButtonC() {
-        return mButtonC;
-    }
-
-    public void setButtonC(ControllerButton buttonC) {
-        mButtonC = buttonC;
-    }
-
-    public ControllerButton getButtonD() {
-        return mButtonD;
-    }
-
-    public void setButtonD(ControllerButton buttonD) {
-        mButtonD = buttonD;
+    @Override
+    public String toString() {
+        return "ControllerConfig{" +
+                "mID=" + mID +
+                ", mName='" + mName + '\'' +
+                ", mBackgroundColor='" + mBackgroundColor + '\'' +
+                ", mDescription='" + mDescription + '\'' +
+                ", mButtons=" + mButtons +
+                '}';
     }
 }

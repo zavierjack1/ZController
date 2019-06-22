@@ -3,7 +3,6 @@ package android.zavierjack.zcontroller;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,13 +20,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerButton {
+
+    private String mName;
     private String mUrl;
     private String mMethod;
     private String mRequestBody;
     private String mContentType;
     private int mColor;
 
-    public ControllerButton(String url, String method, String requestBody, String contentType, int color) {
+    public ControllerButton(String name,String url, String method, String requestBody, String contentType, int color) {
+        mName = name;
         mUrl = url;
         mMethod = method;
         mRequestBody = requestBody;
@@ -35,11 +37,24 @@ public class ControllerButton {
         mColor = color;
     }
 
-    public ControllerButton(String url, String method, String requestBody, String contentType) {
+    public ControllerButton(String name, String url, String method, String requestBody, String contentType) {
+        mName = name;
         mUrl = url;
         mMethod = method;
         mRequestBody = requestBody;
         mContentType = contentType;
+    }
+
+    public ControllerButton(String name) {
+        mName = name;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
     }
 
     public String getUrl() {
@@ -127,7 +142,7 @@ public class ControllerButton {
                                 responseMonitorAppend(responseMonitorScrollView, System.getProperty("line.separator") +
                                         "error is: " + error);
 
-                                Log.d(Util.LOG_TAG, error.toString());
+                                Util.log( error.toString());
                             }
                         }
                     ) {
@@ -177,5 +192,17 @@ public class ControllerButton {
                 scrollView.smoothScrollTo(0, textView.getBottom());
             }
         });
+    }
+
+    @Override
+    public String toString() {
+        return "ControllerButton{" +
+                "mName='" + mName + '\'' +
+                ", mUrl='" + mUrl + '\'' +
+                ", mMethod='" + mMethod + '\'' +
+                ", mRequestBody='" + mRequestBody + '\'' +
+                ", mContentType='" + mContentType + '\'' +
+                ", mColor=" + mColor +
+                '}';
     }
 }
