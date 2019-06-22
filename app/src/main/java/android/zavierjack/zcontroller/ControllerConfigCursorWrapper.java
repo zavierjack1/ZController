@@ -21,13 +21,11 @@ public class ControllerConfigCursorWrapper extends CursorWrapper {
         String uuid = getString(getColumnIndex(ControllerConfigTable.Cols.UUID));
         String name = getString(getColumnIndex(ControllerConfigTable.Cols.NAME));
         String controller_config_json_tx = getString(getColumnIndex(ControllerConfigTable.Cols.CONFIG_JSON));
-        String background_color = "";
-        String description = "";
         HashMap<String, ControllerButton> controllerButtonsMap = new HashMap<>();
 
         ControllerConfigJson controllerConfigJson = new ControllerConfigJson(controller_config_json_tx);
-        background_color = controllerConfigJson.getBackgroundColor();
-        description = controllerConfigJson.getDescription();
+        String background_color = controllerConfigJson.getBackgroundColor();
+        String description = controllerConfigJson.getDescription();
         JSONObject buttons_json = controllerConfigJson.getButtons();
 
         try {
