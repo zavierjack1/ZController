@@ -116,7 +116,7 @@ public class ControllerConfigFragment extends Fragment {
                 returnEditText = mButtonCMethodField;
                 break;
             case "D":
-                returnEditText = mButtonCMethodField;
+                returnEditText = mButtonDMethodField;
                 break;
             default:
                 throw new IllegalArgumentException("We do not have a button named: " + buttonName);
