@@ -77,13 +77,9 @@ public class ControllerConfigListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.new_controller_config:
-                Util.log("ControllerConfigListFragment.onOptionsItemSelected ");
                 ControllerConfig controllerConfig = new ControllerConfig();
-                //THIS IS THE PROBLEM
                 ZControllerDOA.get(getActivity()).addControllerConfig(controllerConfig);
-                Util.log("ControllerConfigListFragment.onOptionsItemSelected grab controller from DB:" +ZControllerDOA.get(getActivity()).getControllerConfig(controllerConfig.getID()).getButtons().keySet().toString());
                 Intent intent = ControllerConfigPagerActivity.newIntent(getActivity(), controllerConfig.getID());
-                Util.log("ControllerConfigListFragment.onOptionsItemSelected: On add Controller Config button keys: "+controllerConfig.getButtons().keySet().toString());
                 startActivity(intent);
                 return true;
             case R.id.show_subtitle:

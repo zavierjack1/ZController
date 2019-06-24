@@ -3,6 +3,9 @@ package android.zavierjack.zcontroller;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -50,6 +53,25 @@ public class ControllerConfigFragment extends Fragment {
         ZControllerDOA.get(getActivity()).updateControllerConfig(mControllerConfig);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_controller_config, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.delete_controller_config:
+                ZControllerDOA.get(getActivity()).deleteControllerConfig(mControllerConfig.getID());
+                getActivity().finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public static ControllerConfigFragment newInstance(UUID configurationID){
         Bundle args = new Bundle();
         args.putSerializable(ARG_CONFIGURATION_ID_KEY, configurationID);
@@ -61,7 +83,7 @@ public class ControllerConfigFragment extends Fragment {
 
     private EditText getUrlField(String buttonName){
         EditText returnEditText;
-        switch (buttonName){
+        switch (buttonName) {
             case "A":
                 returnEditText = mButtonAURLField;
                 break;
@@ -71,9 +93,11 @@ public class ControllerConfigFragment extends Fragment {
             case "C":
                 returnEditText = mButtonCURLField;
                 break;
-            default:
+            case "D":
                 returnEditText = mButtonDURLField;
                 break;
+            default:
+                throw new IllegalArgumentException("We do not have a button named: " + buttonName);
         }
 
         return returnEditText;
@@ -91,9 +115,11 @@ public class ControllerConfigFragment extends Fragment {
             case "C":
                 returnEditText = mButtonCMethodField;
                 break;
-            default:
-                returnEditText = mButtonDMethodField;
+            case "D":
+                returnEditText = mButtonCMethodField;
                 break;
+            default:
+                throw new IllegalArgumentException("We do not have a button named: " + buttonName);
         }
 
         return returnEditText;
@@ -111,9 +137,11 @@ public class ControllerConfigFragment extends Fragment {
             case "C":
                 returnEditText = mButtonCRequestBodyField;
                 break;
-            default:
+            case "D":
                 returnEditText = mButtonDRequestBodyField;
                 break;
+            default:
+                throw new IllegalArgumentException("We do not have a button named: " + buttonName);
         }
 
         return returnEditText;
@@ -131,9 +159,11 @@ public class ControllerConfigFragment extends Fragment {
             case "C":
                 returnEditText = mButtonCContentTypeField;
                 break;
-            default:
+            case "D":
                 returnEditText = mButtonDContentTypeField;
                 break;
+            default:
+                throw new IllegalArgumentException("We do not have a button named: " + buttonName);
         }
 
         return returnEditText;
@@ -190,7 +220,6 @@ public class ControllerConfigFragment extends Fragment {
                     mControllerConfig.getButtons().get(buttonName).setMethod(getMethodField(buttonName).getText().toString());
                     mControllerConfig.getButtons().get(buttonName).setRequestBody(getRequestBodyField(buttonName).getText().toString());
                     mControllerConfig.getButtons().get(buttonName).setContentType(getContentTypeField(buttonName).getText().toString());
-
                 }
                 getActivity().finish();
             }
