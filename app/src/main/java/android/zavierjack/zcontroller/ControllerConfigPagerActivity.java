@@ -59,4 +59,24 @@ public class ControllerConfigPagerActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (fragmentsFilledRequiredFields()) {
+            super.onBackPressed();
+        }
+    }
+
+    private boolean fragmentsFilledRequiredFields(){
+        boolean ready = true;
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for(Fragment f : fragments) {
+            if (f != null && f instanceof RequiredFieldsFragment) {
+                if (!(((RequiredFieldsFragment) f).checkRequiredFields())) {
+                    ready = false;
+                }
+            }
+        }
+        return ready;
+    }
 }

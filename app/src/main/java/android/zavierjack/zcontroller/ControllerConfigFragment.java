@@ -15,10 +15,12 @@ import android.widget.TextView;
 
 import java.util.UUID;
 
-public class ControllerConfigFragment extends Fragment {
+public class ControllerConfigFragment extends Fragment implements RequiredFieldsFragment{
     private static final String ARG_CONFIGURATION_ID_KEY = "ControllerConfigFragment.ControllerConfig_ID";
 
     private ControllerConfig mControllerConfig;
+    private View v;
+    private ScrollView mScrollView;
     private TextView mNameFieldLabel;
     private EditText mNameField;
     private EditText mDescriptionField;
@@ -60,7 +62,6 @@ public class ControllerConfigFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_controller_config, menu);
-
     }
 
     @Override
@@ -185,11 +186,23 @@ public class ControllerConfigFragment extends Fragment {
         });
     }
 
+    public boolean checkRequiredFields(){
+        if (mNameField.getText().toString().trim().equals("")) {
+            Util.showShortToast(v.getContext(), "Name is required");
+            mNameField.setSelected(true);
+            focusOnView(mScrollView, mNameFieldLabel);
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View v = inflater.inflate(R.layout.fragment_controller_config, container, false);
-
+        v = inflater.inflate(R.layout.fragment_controller_config, container, false);
+        mScrollView = v.findViewById(R.id.controller_config_scroll_view);
         mNameFieldLabel = v.findViewById(R.id.controller_config_name_label);
         mNameField = v.findViewById(R.id.controller_config_name);
         mDescriptionField = v.findViewById(R.id.controller_config_description);
@@ -226,18 +239,11 @@ public class ControllerConfigFragment extends Fragment {
             getContentTypeField(buttonName).setText(mControllerConfig.getButtons().get(buttonName).getContentType());
         }
 
-        final ScrollView mScrollView = v.findViewById(R.id.controller_config_scroll_view);
-
         mSaveButton = v.findViewById(R.id.controller_config_save);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //make name field required
-                if (mNameField.getText().toString().trim().equals("")) {
-                    Util.showShortToast(view.getContext(), "Name is required");
-                    mNameField.setSelected(true);
-                    focusOnView(mScrollView, mNameFieldLabel);
-                } else {
+                if (checkRequiredFields()){
                     mControllerConfig.setName(mNameField.getText().toString());
                     mControllerConfig.setDescription(mDescriptionField.getText().toString());
                     for (String buttonName : mControllerConfig.getButtons().keySet()) {
@@ -248,6 +254,15 @@ public class ControllerConfigFragment extends Fragment {
                     }
                     getActivity().finish();
                 }
+                /*
+                //make name field required
+                if (mNameField.getText().toString().trim().equals("")) {
+                    Util.showShortToast(view.getContext(), "Name is required");
+                    mNameField.setSelected(true);
+                    focusOnView((ScrollView) v.findViewById(R.id.controller_config_scroll_view), mNameFieldLabel);
+                } else {
+
+                }*/
             }
         });
 
