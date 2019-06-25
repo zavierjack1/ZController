@@ -31,7 +31,6 @@ public class ControllerConfigJson extends JSONObject{
             return background_color;
         }
         catch (JSONException e) {
-            Util.log(e.toString());
             return background_color;
         }
     }
@@ -43,7 +42,6 @@ public class ControllerConfigJson extends JSONObject{
             return description;
         }
         catch (JSONException e){
-            Util.log(e.toString());
             return description;
         }
     }
@@ -55,7 +53,6 @@ public class ControllerConfigJson extends JSONObject{
             return buttons;
         }
         catch (JSONException e){
-            Util.log(e.toString());
             return buttons;
         }
     }

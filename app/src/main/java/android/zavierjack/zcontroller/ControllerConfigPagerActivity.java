@@ -29,7 +29,6 @@ public class ControllerConfigPagerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Util.log("ControllerConfigPagerActivity.onCreate");
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_controller_config_pager);

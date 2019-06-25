@@ -21,7 +21,6 @@ public class ButtonConfigJson extends JSONObject{
             return name;
         }
         catch (JSONException e) {
-            Util.log(e.toString());
             return name;
         }
     }
@@ -33,7 +32,6 @@ public class ButtonConfigJson extends JSONObject{
             return url;
         }
         catch (JSONException e) {
-            Util.log(e.toString());
             return url;
         }
     }
@@ -45,7 +43,6 @@ public class ButtonConfigJson extends JSONObject{
             return method;
         }
         catch (JSONException e) {
-            Util.log(e.toString());
             return method;
         }
     }
@@ -57,7 +54,6 @@ public class ButtonConfigJson extends JSONObject{
             return requestBody;
         }
         catch (JSONException e) {
-            Util.log(e.toString());
             return requestBody;
         }
     }
@@ -69,7 +65,6 @@ public class ButtonConfigJson extends JSONObject{
             return contentType;
         }
         catch (JSONException e) {
-            Util.log(e.toString());
             return contentType;
         }
     }
@@ -81,7 +76,6 @@ public class ButtonConfigJson extends JSONObject{
             return color;
         }
         catch (JSONException e) {
-            Util.log(e.toString());
             return color;
         }
     }

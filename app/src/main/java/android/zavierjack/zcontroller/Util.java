@@ -1,6 +1,8 @@
 package android.zavierjack.zcontroller;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Util {
     private static final String LOG_TAG = "ZCONTROLLER_LOG";
@@ -15,4 +17,13 @@ public class Util {
     public static void log(String message){
         Log.d(LOG_TAG, getMethodName(4)+": "+message);
     }
+
+    public static void showShortToast(Context context, CharSequence text){
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+
 }

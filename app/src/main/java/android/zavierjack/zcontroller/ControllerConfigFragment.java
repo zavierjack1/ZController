@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.UUID;
 
@@ -17,6 +19,7 @@ public class ControllerConfigFragment extends Fragment {
     private static final String ARG_CONFIGURATION_ID_KEY = "ControllerConfigFragment.ControllerConfig_ID";
 
     private ControllerConfig mControllerConfig;
+    private TextView mNameFieldLabel;
     private EditText mNameField;
     private EditText mDescriptionField;
     private Button mBackgroundColorButton;
@@ -169,11 +172,25 @@ public class ControllerConfigFragment extends Fragment {
         return returnEditText;
     }
 
+    private final void focusOnView(ScrollView scrollView, TextView textView){
+
+        final ScrollView finalScrollView = scrollView;
+        final TextView finalTextView = textView;
+
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                finalScrollView.smoothScrollTo(0, finalTextView.getTop());
+            }
+        });
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View v = inflater.inflate(R.layout.fragment_controller_config, container, false);
 
+        mNameFieldLabel = v.findViewById(R.id.controller_config_name_label);
         mNameField = v.findViewById(R.id.controller_config_name);
         mDescriptionField = v.findViewById(R.id.controller_config_description);
         mBackgroundColorButton = v.findViewById(R.id.controller_config_background_color);
@@ -209,19 +226,28 @@ public class ControllerConfigFragment extends Fragment {
             getContentTypeField(buttonName).setText(mControllerConfig.getButtons().get(buttonName).getContentType());
         }
 
+        final ScrollView mScrollView = v.findViewById(R.id.controller_config_scroll_view);
+
         mSaveButton = v.findViewById(R.id.controller_config_save);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mControllerConfig.setName(mNameField.getText().toString());
-                mControllerConfig.setDescription(mDescriptionField.getText().toString());
-                for (String buttonName: mControllerConfig.getButtons().keySet()) {
-                    mControllerConfig.getButtons().get(buttonName).setUrl(getUrlField(buttonName).getText().toString());
-                    mControllerConfig.getButtons().get(buttonName).setMethod(getMethodField(buttonName).getText().toString());
-                    mControllerConfig.getButtons().get(buttonName).setRequestBody(getRequestBodyField(buttonName).getText().toString());
-                    mControllerConfig.getButtons().get(buttonName).setContentType(getContentTypeField(buttonName).getText().toString());
+                //make name field required
+                if (mNameField.getText().toString().trim().equals("")) {
+                    Util.showShortToast(view.getContext(), "Name is required");
+                    mNameField.setSelected(true);
+                    focusOnView(mScrollView, mNameFieldLabel);
+                } else {
+                    mControllerConfig.setName(mNameField.getText().toString());
+                    mControllerConfig.setDescription(mDescriptionField.getText().toString());
+                    for (String buttonName : mControllerConfig.getButtons().keySet()) {
+                        mControllerConfig.getButtons().get(buttonName).setUrl(getUrlField(buttonName).getText().toString());
+                        mControllerConfig.getButtons().get(buttonName).setMethod(getMethodField(buttonName).getText().toString());
+                        mControllerConfig.getButtons().get(buttonName).setRequestBody(getRequestBodyField(buttonName).getText().toString());
+                        mControllerConfig.getButtons().get(buttonName).setContentType(getContentTypeField(buttonName).getText().toString());
+                    }
+                    getActivity().finish();
                 }
-                getActivity().finish();
             }
         });
 
