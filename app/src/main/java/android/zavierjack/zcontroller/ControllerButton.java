@@ -29,11 +29,7 @@ public class ControllerButton {
     private int mColor;
 
     public ControllerButton(String name,String url, String method, String requestBody, String contentType, int color) {
-        mName = name;
-        mUrl = url;
-        mMethod = method;
-        mRequestBody = requestBody;
-        mContentType = contentType;
+        this(name, url, method, requestBody, contentType);
         mColor = color;
     }
 
@@ -47,6 +43,16 @@ public class ControllerButton {
 
     public ControllerButton(String name) {
         mName = name;
+    }
+
+    public ControllerButton(ControllerButtonJson controllerButtonJson) {
+        this(   controllerButtonJson.getName(),
+                controllerButtonJson.getUrl(),
+                controllerButtonJson.getMethod(),
+                controllerButtonJson.getRequestBody(),
+                controllerButtonJson.getContentType(),
+                controllerButtonJson.getColor()
+        );
     }
 
     public String getName() {

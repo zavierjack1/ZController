@@ -6,12 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.zavierjack.zcontroller.database.ContollerDBSchema.ControllerConfigTable;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class ZControllerDOA {
@@ -46,7 +42,7 @@ public class ZControllerDOA {
                 new String[] {id.toString()});
     }
 
-    public void deleteControllerConfig(){
+    public void deleteControllerConfigs(){
         mDatabase.delete(
                 ControllerConfigTable.NAME,
                 "",
@@ -89,6 +85,24 @@ public class ZControllerDOA {
         }
     }
 
+    public ControllerConfig getControllerConfig(String name){
+
+        ControllerConfigCursorWrapper cursor = queryControllerConfigs(
+                ControllerConfigTable.Cols.NAME + " = ?",
+                new String[] { name.toString() });
+
+        try {
+            if (cursor.getCount() == 0){
+                return null;
+            }
+
+            cursor.moveToFirst();
+            return cursor.getControllerConfig();
+        } finally {
+            cursor.close();
+        }
+    }
+
     public void updateControllerConfig(ControllerConfig controllerConfig) {
         String uuidString = controllerConfig.getID().toString();
         ContentValues values = getContentValues(controllerConfig);
@@ -102,30 +116,7 @@ public class ZControllerDOA {
     private static ContentValues getContentValues(ControllerConfig controllerConfig){
         ContentValues values = new ContentValues();
 
-        ControllerConfigJson controllerConfigJson = new ControllerConfigJson();
-        JSONObject buttonsConfigJson  = new JSONObject();
-
-        //Controller Config
-        try{controllerConfigJson.put("name", controllerConfig.getName());} catch(JSONException e){Util.log(e.toString());}
-        try{controllerConfigJson.put("description", controllerConfig.getDescription());} catch(JSONException e){Util.log(e.toString());}
-        try{controllerConfigJson.put("background_color", controllerConfig.getBackgroundColor());} catch(JSONException e){Util.log(e.toString());}
-        //try{controllerConfigJson.put("template", controllerConfig.getName());} catch(JSONException e){Util.log(e.toString());}
-
-        //Button Config
-        for (Map.Entry<String,ControllerButton> controllerButtonEntry: controllerConfig.getButtons().entrySet()){
-            //overwrite buttonConfigJson with next button
-            ButtonConfigJson buttonConfigJson = new ButtonConfigJson();
-            try{buttonConfigJson.put("url", controllerButtonEntry.getValue().getUrl());} catch(JSONException e){Util.log(e.toString());}
-            try{buttonConfigJson.put("method", controllerButtonEntry.getValue().getMethod());} catch(JSONException e){Util.log(e.toString());}
-            try{buttonConfigJson.put("request_body", controllerButtonEntry.getValue().getRequestBody());} catch(JSONException e){Util.log(e.toString());}
-            try{buttonConfigJson.put("content_type", controllerButtonEntry.getValue().getContentType());} catch(JSONException e){Util.log(e.toString());}
-
-            //put the button config in the buttons JSON
-            try{buttonsConfigJson.put(controllerButtonEntry.getValue().getName(), buttonConfigJson);} catch(JSONException e){Util.log(e.toString());}
-        }
-
-        //add buttonsjson to controllerjson
-        try{controllerConfigJson.put("buttons", buttonsConfigJson);} catch(JSONException e){Util.log(e.toString());}
+        ControllerConfigJson controllerConfigJson = controllerConfig.getJson();
 
         values.put(ControllerConfigTable.Cols.UUID, controllerConfig.getID().toString());
         values.put(ControllerConfigTable.Cols.NAME, controllerConfig.getName());

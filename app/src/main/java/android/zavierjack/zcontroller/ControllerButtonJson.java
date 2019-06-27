@@ -3,14 +3,14 @@ package android.zavierjack.zcontroller;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ButtonConfigJson extends JSONObject{
+public class ControllerButtonJson extends JSONObject{
     JSONObject config;
 
-    public ButtonConfigJson() {
+    public ControllerButtonJson() {
         this.config = new JSONObject();
     }
 
-    public ButtonConfigJson(JSONObject config) {
+    public ControllerButtonJson(JSONObject config) {
         this.config = config;
     }
 

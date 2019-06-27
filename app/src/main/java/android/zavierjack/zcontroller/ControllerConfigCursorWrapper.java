@@ -35,7 +35,7 @@ public class ControllerConfigCursorWrapper extends CursorWrapper {
             while(butons_json_keys.hasNext()) {
                 String key = butons_json_keys.next();
                 if (buttons_json.get(key) instanceof JSONObject) {
-                    ButtonConfigJson button_json = new ButtonConfigJson((JSONObject) buttons_json.get(key));
+                    ControllerButtonJson button_json = new ControllerButtonJson((JSONObject) buttons_json.get(key));
 
                     controllerButtonsMap.put(key, new ControllerButton(
                             key,

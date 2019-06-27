@@ -15,12 +15,22 @@ public class ControllerConfigJson extends JSONObject{
     }
 
     public ControllerConfigJson(String config) {
-
         try{
             this.config = new JSONObject(config);
         }
         catch (JSONException e){
             Util.log(e.toString());
+        }
+    }
+
+    public String getName(){
+        String name ="";
+        try {
+            name = config.getString("name");
+            return name;
+        }
+        catch (JSONException e) {
+            return name;
         }
     }
 
