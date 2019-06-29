@@ -121,9 +121,7 @@ public class ZControllerDOA {
         values.put(ControllerConfigTable.Cols.UUID, controllerConfig.getID().toString());
         values.put(ControllerConfigTable.Cols.NAME, controllerConfig.getName());
         values.put(ControllerConfigTable.Cols.CONFIG_JSON, controllerConfigJson.toString());
-
-        Util.log(controllerConfigJson.toString());
-
+        
         return values;
     }
 

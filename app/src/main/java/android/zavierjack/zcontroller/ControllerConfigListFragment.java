@@ -33,17 +33,7 @@ public class ControllerConfigListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-/*
-        ZControllerDOA zControllerDOA = ZControllerDOA.get(getActivity());
 
-        ControllerConfig controllerConfig = new ControllerConfig(
-            new ControllerConfigJson(
-                "{\"name\":\"Zavier\",\"description\":\"this is a working example more text\",\"background_color\":\"\",\"buttons\":{\"A\":{\"name\":\"A\",\"url\":\"http://www.google.com\",\"method\":\"GET\",\"request_body\":\"\",\"content_type\":\"\"},\"B\":{\"name\":\"B\",\"url\":\"yellow\",\"method\":\"\",\"request_body\":\"\",\"content_type\":\"\"},\"C\":{\"name\":\"C\",\"url\":\"yellow\",\"method\":\"\",\"request_body\":\"\",\"content_type\":\"\"},\"D\":{\"name\":\"D\",\"url\":\"purple\",\"method\":\"POST\",\"request_body\":\"\",\"content_type\":\"\"}}}"
-            )
-        );
-        ZControllerDOA.get(getActivity()).addControllerConfig(controllerConfig);
-        Util.log(controllerConfig.toString());
-*/
         View view = inflater.inflate(R.layout.fragment_controller_config_list, container, false);
 
         mControllerConfigRecyclerView = view.findViewById(R.id.configuration_recycler_view);
